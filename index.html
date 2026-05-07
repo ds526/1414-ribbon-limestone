@@ -3,68 +3,745 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>1414 Ribbon Limestone Ter SE #204 | Leesburg, VA</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+  <title>42 Harlow Ridge — Property Listing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --cream: #f5f0e8;
+      --bone: #ede8dc;
+      --sand: #c9b99a;
+      --stone: #8a7d6b;
+      --charcoal: #2a2620;
+      --ink: #1a1714;
+      --accent: #b5874a;
+      --accent-light: #d4a96a;
+      --white: #fdfaf5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+      filter: brightness(0.72);
+      transform: scale(1.04);
+      animation: zoomOut 12s ease forwards;
+    }
+
+    @keyframes zoomOut {
+      from { transform: scale(1.04); }
+      to   { transform: scale(1.00); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,23,20,0.82) 0%, rgba(26,23,20,0.10) 55%, transparent 100%);
+    }
+
+    .nav {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 3.5rem;
+      z-index: 10;
+      opacity: 0;
+      animation: fadeDown 0.8s 0.3s ease forwards;
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .nav-badge {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      border: 1px solid var(--accent-light);
+      padding: 0.4em 1.1em;
+      border-radius: 2px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      padding: 0 3.5rem 4rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.6s ease forwards;
+    }
+
+    .hero-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 1rem;
+    }
+
+    .hero-address {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5.5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-style: italic;
+      color: var(--sand);
+      margin-bottom: 2rem;
+    }
+
+    .hero-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      opacity: 0;
+      animation: fadeIn 1s 1.6s ease forwards;
+    }
+
+    .scroll-hint span {
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sand);
+    }
+
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--sand), transparent);
+      animation: scrollDrop 1.8s 1.6s ease-in-out infinite;
+    }
+
+    @keyframes scrollDrop {
+      0%, 100% { transform: scaleY(1); opacity: 1; }
+      50% { transform: scaleY(0.5) translateY(10px); opacity: 0.4; }
+    }
+
+    /* ── KEY STATS ── */
+    .stats {
+      background: var(--ink);
+      padding: 2.8rem 3.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      flex: 1;
+      min-width: 120px;
+      max-width: 200px;
+      text-align: center;
+      padding: 1rem 2rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      opacity: 0;
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--accent-light);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 5rem 3.5rem; max-width: 1200px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 1.8rem;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    /* ── DESCRIPTION ── */
+    .description p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--stone);
+      max-width: 700px;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── GALLERY ── */
+    .gallery-section {
+      background: var(--bone);
+      padding: 5rem 3.5rem;
+    }
+
+    .gallery-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      grid-template-rows: 320px 320px;
+      gap: 12px;
+      margin-top: 2.5rem;
+    }
+
+    .gallery-grid .img-wrap {
+      overflow: hidden;
+      position: relative;
+      background: var(--sand);
+    }
+
+    .gallery-grid .img-wrap:first-child {
+      grid-row: span 2;
+    }
+
+    .gallery-grid img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .gallery-grid .img-wrap:hover img {
+      transform: scale(1.04);
+    }
+
+    .img-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1rem 1.2rem 0.8rem;
+      background: linear-gradient(to top, rgba(26,23,20,0.65), transparent);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .img-wrap:hover .img-caption { opacity: 1; }
+
+    /* ── FEATURES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--bone);
+      margin-top: 2.5rem;
+      border: 1px solid var(--bone);
+    }
+
+    .feature-card {
+      background: var(--white);
+      padding: 2rem 1.8rem;
+      transition: background 0.25s;
+    }
+
+    .feature-card:hover { background: var(--cream); }
+
+    .feature-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.9rem;
+      display: block;
+    }
+
+    .feature-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    .feature-desc {
+      font-size: 0.8rem;
+      color: var(--stone);
+      line-height: 1.6;
+    }
+
+    /* ── FLOOR PLAN / DETAILS ── */
+    .details-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .detail-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .detail-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--bone);
+      font-size: 0.88rem;
+    }
+
+    .detail-list li:last-child { border-bottom: none; }
+
+    .detail-key {
+      color: var(--stone);
+      letter-spacing: 0.05em;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .detail-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    /* ── MAP PLACEHOLDER ── */
+    .map-block {
+      background: var(--bone);
+      border: 1px solid var(--sand);
+      height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--stone);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 1rem;
+    }
+
+    .map-block .pin { font-size: 2rem; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--ink);
+      padding: 6rem 3.5rem;
+      text-align: center;
+    }
+
+    .cta-section .section-eyebrow { color: var(--accent-light); margin-bottom: 1.2rem; }
+
+    .cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .cta-sub {
+      color: var(--stone);
+      font-size: 0.9rem;
+      margin-bottom: 3rem;
+      max-width: 480px;
+      margin-left: auto; margin-right: auto;
+      line-height: 1.8;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      border: none;
+      padding: 1em 2.6em;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 1em 2.6em;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.25s, transform 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover { border-color: var(--accent-light); transform: translateY(-1px); }
+
+    /* ── AGENT ── */
+    .agent-card {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      background: var(--bone);
+      padding: 2rem;
+      max-width: 480px;
+      margin: 0 auto 3rem;
+    }
+
+    .agent-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+      flex-shrink: 0;
+      background: var(--sand);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+    }
+
+    .agent-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+
+    .agent-title { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--stone); margin-bottom: 0.4rem; }
+    .agent-contact { font-size: 0.82rem; color: var(--sand); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f0d0b;
+      padding: 2rem 3.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+
+    .footer-note { font-size: 0.65rem; color: #4a4540; letter-spacing: 0.1em; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* stagger stats */
+    .stat:nth-child(1) { animation-delay: 0.05s; }
+    .stat:nth-child(2) { animation-delay: 0.15s; }
+    .stat:nth-child(3) { animation-delay: 0.25s; }
+    .stat:nth-child(4) { animation-delay: 0.35s; }
+    .stat:nth-child(5) { animation-delay: 0.45s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav, section, .gallery-section, .cta-section, footer {
+        padding-left: 1.6rem; padding-right: 1.6rem;
+      }
+      .hero-content { padding: 0 1.6rem 3rem; }
+      .stats { padding: 2rem 1rem; gap: 0; }
+      .stat { min-width: 90px; padding: 0.8rem 1rem; }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 280px 220px 220px;
+      }
+      .gallery-grid .img-wrap:first-child { grid-row: span 1; }
+      .details-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+  </style>
+</head>
 <body>
 
   <!-- HERO -->
-  <header class="hero">
-    <div class="overlay">
-      <h1>1414 Ribbon Limestone Ter SE #204</h1>
-      <p>Leesburg, VA 20175</p>
-      <a class="btn" href="#contact">Schedule a Showing</a>
-    </div>
-  </header>
+  <div class="hero">
+    <img class="hero-img"
+      src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800&q=80"
+      alt="42 Harlow Ridge exterior"
+    />
+    <div class="hero-overlay"></div>
 
-  <!-- DETAILS -->
-  <section class="section">
-    <h2>Property Highlights</h2>
-    <div class="grid">
-      <div class="card">🛏 Bedrooms: 3</div>
-      <div class="card">🛁 Bathrooms: 2.5</div>
-      <div class="card">📐 Sq Ft: 2692</div>
-      <div class="card">📍 Prime Leesburg Location</div>
+    <nav class="nav">
+      <span class="nav-brand">Harlow Estates</span>
+      <span class="nav-badge">Exclusive Listing</span>
+    </nav>
+
+    <div class="hero-content">
+      <p class="hero-tag">For Sale · New Listing</p>
+      <h1 class="hero-address">42 Harlow Ridge Court</h1>
+      <p class="hero-sub">Leesburg, Virginia 20176</p>
+      <p class="hero-price">$1,475,000</p>
     </div>
-  </section>
+
+    <div class="scroll-hint">
+      <span>Explore</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats">
+    <div class="stat"><div class="stat-value">5</div><div class="stat-label">Bedrooms</div></div>
+    <div class="stat"><div class="stat-value">4.5</div><div class="stat-label">Bathrooms</div></div>
+    <div class="stat"><div class="stat-value">4,820</div><div class="stat-label">Sq Ft</div></div>
+    <div class="stat"><div class="stat-value">0.62</div><div class="stat-label">Acres</div></div>
+    <div class="stat"><div class="stat-value">2019</div><div class="stat-label">Built</div></div>
+  </div>
 
   <!-- DESCRIPTION -->
-  <section class="section light">
-    <h2>About This Home</h2>
+  <section class="description reveal">
+    <p class="section-eyebrow">The Property</p>
+    <h2 class="section-title">Refined living<br>on the ridge</h2>
+    <div class="divider"></div>
     <p>
-      Welcome to this beautiful condo in the heart of Leesburg. Featuring an open layout, modern finishes,
-      and convenient access to shopping, dining, and commuter routes, this home offers both comfort and lifestyle.
+      Perched at the crest of a quiet cul-de-sac in one of Leesburg's most sought-after communities, 42 Harlow Ridge Court is a study in thoughtful design. Soaring ceilings, wide-plank white oak floors, and an abundance of natural light characterize every room.
+    </p>
+    <p>
+      The open-plan kitchen and great room spill onto a covered rear terrace overlooking protected woodland — a seamless indoor-outdoor flow perfect for entertaining. The primary suite occupies its own private wing, offering a spa-caliber bath, dual walk-in closets, and a private sitting room.
+    </p>
+    <p>
+      A finished lower level with walkout access, a dedicated home office, and a three-car garage complete this exceptional offering. Less than five minutes to historic downtown Leesburg and within the highly regarded Loudoun County school district.
     </p>
   </section>
 
   <!-- GALLERY -->
-  <section class="section">
-    <h2>Photo Gallery</h2>
-    <div class="gallery">
-      <img src="images/photo1.jpg" alt="Home photo">
-      <img src="images/photo2.jpg" alt="Home photo">
-      <img src="images/photo3.jpg" alt="Home photo">
+  <div class="gallery-section">
+    <div class="gallery-inner reveal">
+      <p class="section-eyebrow">Gallery</p>
+      <h2 class="section-title">Inside the home</h2>
+      <div class="gallery-grid">
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80" alt="Living room" />
+          <div class="img-caption">Great Room</div>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80" alt="Kitchen" />
+          <div class="img-caption">Chef's Kitchen</div>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=900&q=80" alt="Primary bath" />
+          <div class="img-caption">Primary Suite Bath</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="reveal">
+    <p class="section-eyebrow">Highlights</p>
+    <h2 class="section-title">Premium features<br>throughout</h2>
+    <div class="divider"></div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🔥</span>
+        <div class="feature-name">Double-Sided Fireplace</div>
+        <div class="feature-desc">Gas fireplace shared between the great room and primary sitting room.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🍳</span>
+        <div class="feature-name">Chef's Kitchen</div>
+        <div class="feature-desc">48″ Wolf range, Sub-Zero refrigerator, quartzite waterfall island.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🌿</span>
+        <div class="feature-name">Covered Terrace</div>
+        <div class="feature-desc">Bluestone-paved outdoor living area with built-in grill and wooded views.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🛁</span>
+        <div class="feature-name">Spa Primary Bath</div>
+        <div class="feature-desc">Heated marble floors, soaking tub, dual vanities, and steam shower.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🏠</span>
+        <div class="feature-name">Finished Lower Level</div>
+        <div class="feature-desc">Walkout basement with media room, wet bar, gym, and guest suite.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <div class="feature-name">Smart Home</div>
+        <div class="feature-desc">Lutron lighting, whole-home audio, EV charging, and security system.</div>
+      </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section light">
-    <h2>Schedule a Showing</h2>
-
-    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="form">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="I’d like to schedule a showing..." required></textarea>
-      <button type="submit" class="btn">Send Request</button>
-    </form>
+  <!-- DETAILS + LOCATION -->
+  <section class="reveal">
+    <div class="details-layout">
+      <div>
+        <p class="section-eyebrow">Property Details</p>
+        <h2 class="section-title">At a glance</h2>
+        <div class="divider"></div>
+        <ul class="detail-list">
+          <li><span class="detail-key">MLS #</span><span class="detail-val">VALO2098431</span></li>
+          <li><span class="detail-key">Property Type</span><span class="detail-val">Single Family</span></li>
+          <li><span class="detail-key">Style</span><span class="detail-val">Colonial / Transitional</span></li>
+          <li><span class="detail-key">Lot Size</span><span class="detail-val">0.62 Acres</span></li>
+          <li><span class="detail-key">Garage</span><span class="detail-val">3-Car Attached</span></li>
+          <li><span class="detail-key">Basement</span><span class="detail-val">Finished Walkout</span></li>
+          <li><span class="detail-key">HOA</span><span class="detail-val">$180 / month</span></li>
+          <li><span class="detail-key">Taxes (2024)</span><span class="detail-val">$11,240 / year</span></li>
+          <li><span class="detail-key">School District</span><span class="detail-val">Loudoun County</span></li>
+          <li><span class="detail-key">Days on Market</span><span class="detail-val">4</span></li>
+        </ul>
+      </div>
+      <div>
+        <p class="section-eyebrow">Location</p>
+        <h2 class="section-title">Leesburg,<br>Virginia</h2>
+        <div class="divider"></div>
+        <p style="font-size:0.88rem; color:var(--stone); line-height:1.8; margin-bottom:1.2rem;">
+          Situated in the rolling hills of Loudoun County — just 35 miles from Washington D.C. — with easy access to Dulles International Airport, the W&OD Trail, and acclaimed wine country.
+        </p>
+        <div class="map-block">
+          <div class="pin">📍</div>
+          <span>42 Harlow Ridge Ct, Leesburg VA</span>
+          <span style="opacity:0.5; font-size:0.6rem;">Embed Google Maps iframe here</span>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <p class="section-eyebrow">Schedule a Visit</p>
+    <h2 class="cta-title">Experience it in person</h2>
+    <p class="cta-sub">Private showings available by appointment. Contact us to arrange an exclusive tour at your convenience.</p>
+
+    <div class="agent-card">
+      <div class="agent-avatar">👤</div>
+      <div>
+        <div class="agent-name">Margaret A. Whitfield</div>
+        <div class="agent-title">Listing Agent · Harlow Estates</div>
+        <div class="agent-contact">+1 (571) 555-0192 · m.whitfield@harlowestates.com</div>
+      </div>
+    </div>
+
+    <div class="cta-buttons">
+      <a href="mailto:m.whitfield@harlowestates.com" class="btn-primary">Request a Showing</a>
+      <a href="tel:+15715550192" class="btn-secondary">Call the Agent</a>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2026 David Stuart | Realtor </p>
-    <p> Burnham Realty </p>
+    <span class="footer-brand">Harlow Estates · Leesburg, VA</span>
+    <span class="footer-note">© 2026 · All information deemed reliable but not guaranteed · MLS VALO2098431</span>
   </footer>
 
+  <script>
+    // Intersection observer for scroll reveals
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
