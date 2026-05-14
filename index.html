@@ -697,19 +697,20 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  <script>
+    const lat = 39.086872;
+    const long = -77.524094;
 
-<script>
-  const map = L.map('map').setView([39.0601, -77.5189], 16);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
+    const map = L.map('map').setView([lat, long], 17);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
 
-  L.marker([39.0601, -77.5189])
-    .addTo(map)
-    .bindPopup('<b>1414 Ribbon Limestone Terrace SE</b><br>Leesburg, VA 20175')
-    .openPopup();
+    L.marker([lat, long])
+      .addTo(map)
+      .bindPopup('<b>1414 Ribbon Limestone Terrace SE</b><br>Leesburg, VA 20175'</br>)
+      .openPopup();
 </script>
-
 
       </div>
     </div>
@@ -741,19 +742,6 @@
     <span class="footer-brand">Lofts at Village Walk · Leesburg, VA</span>
     <span class="footer-note">© 2026 · All information deemed reliable but not guaranteed · MLS #VALO2123588</span>
   </footer>
-  <script>
-    const lat = 39.086872;
-    const long = -77.524094;
 
-    const map = L.map('map').setView([lat, lng], 17);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    L.marker([lat, lng])
-      .addTo(map)
-      .bindPopup('<b>1414 Ribbon Limestone Terrace SE</b><br>Leesburg, VA 20175'</br>)
-      .openPopup();
-</script>
 </body>
 </html>
